@@ -58,10 +58,10 @@ export const portfolioData = {
   },
 
   about: {
-    title: "Profissional em Transição para Desenvolvimento Front-end",
+    title: "Product Owner & Desenvolvedora Front-end",
     description: [
-      "Sou Product Owner e Desenvolvedora Front-end com 20 anos de experiência em projetos de diferentes portes, atuando como Gerente de Projetos, Product Owner, Scrum Master e Agile Coach. Essa trajetória me levou a tomar a decisão de retomar um grande sonho: tornar-me uma desenvolvedora Front-end, com especialização em HTML, CSS, JavaScript, TypeScript, React.js, Node.js e jQuery.",
-      "Após anos dedicados a projetos que envolvem metodologias ágeis, gestão de produtos e transformação digital, percebo que posso usar minha experiência prática para criar produtos digitais inovadores e com forte impacto no mercado. Acredito que minha visão estratégica e capacidade técnica serão diferenciais valiosos, permitindo não só entregar código de qualidade, mas também construir pontes entre a tecnologia, o produto e o negócio."
+      "Sou Thalita Reis, Product Owner e Desenvolvedora Front-end com 20 anos de experiência em projetos de diferentes portes, atuando como Gerente de Projetos, Product Owner, Scrum Master e Agile Coach. Ao longo dessa jornada, desenvolvi habilidades essenciais em gestão de produto, liderança de equipes, soluções estratégicas e comunicação com stakeholders.",
+      "Essa trajetória me levou a tomar a decisão de retomar um grande sonho: tornar-me uma desenvolvedora Front-end, com especialização em HTML, CSS, JavaScript, TypeScript, React.js, Node.js e jQuery. Embora iniciar um novo desafio após tantos anos de carreira possa parecer ousado, vejo isso como uma oportunidade única de recomeçar, aplicando o aprendizado acumulado de liderança, resolução de problemas, análise estratégica e trabalho em equipe para desenvolver soluções tecnológicas."
     ],
     stats: {
       projects: "120+",
@@ -153,21 +153,33 @@ export const portfolioData = {
     },
     {
       id: "4",
-      name: "Scrum Master PSM I",
-      provider: "Scrum.org",
-      icon: "fas fa-tasks"
+      name: "JavaScript, CSS, HTML",
+      provider: "Alura",
+      icon: "fab fa-js-square"
     },
     {
       id: "5",
-      name: "Product Owner Certification",
-      provider: "Clarify Treinamentos",
-      icon: "fas fa-product-hunt"
+      name: "React.js",
+      provider: "Alura",
+      icon: "fab fa-react"
     },
     {
       id: "6",
-      name: "Design Thinking",
-      provider: "Ironhack",
-      icon: "fas fa-lightbulb"
+      name: "Node.js",
+      provider: "Alura",
+      icon: "fab fa-node-js"
+    },
+    {
+      id: "7",
+      name: "TypeScript",
+      provider: "Cursos Online",
+      icon: "fas fa-code"
+    },
+    {
+      id: "8",
+      name: "MLOps e Aplicações de IA",
+      provider: "TI Exames",
+      icon: "fas fa-robot"
     }
   ],
 
@@ -214,7 +226,7 @@ export const portfolioData = {
 
   languages: [
     { name: "Português", level: "Nativo", percentage: 100 },
-    { name: "Inglês", level: "Intermediário", percentage: 70 },
-    { name: "Espanhol", level: "Básico", percentage: 40 }
+    { name: "Inglês", level: "Intermediário (leitura técnica e comunicação básica)", percentage: 70 },
+    { name: "Espanhol", level: "Básico (leitura técnica)", percentage: 40 }
   ] as Language[]
 };
