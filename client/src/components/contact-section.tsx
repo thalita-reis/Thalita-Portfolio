@@ -126,7 +126,10 @@ export default function ContactSection() {
               <h4 className="text-lg font-semibold text-gray-900 mb-6">Redes Sociais</h4>
               <div className="flex space-x-4">
                 {Object.entries(contact.socialLinks)
-                  .filter(([platform, url]) => url && url.trim() !== "")
+                  .filter(([platform, url]) => {
+                    console.log(`Social link: ${platform} = ${url}`);
+                    return url && url.trim() !== "";
+                  })
                   .map(([platform, url]) => {
                     const Icon = socialIcons[platform as keyof typeof socialIcons];
                     const colors = {
