@@ -61,6 +61,15 @@ export default function HeroSection() {
               src={personalInfo.profileImage}
               alt={`Professional portrait of ${personalInfo.name}`}
               className="rounded-2xl shadow-2xl w-full max-w-md mx-auto hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                console.error('Image failed to load:', personalInfo.profileImage);
+                const target = e.target as HTMLImageElement;
+                target.style.backgroundColor = '#f3f4f6';
+                target.style.border = '2px dashed #d1d5db';
+              }}
+              onLoad={() => {
+                console.log('Image loaded successfully:', personalInfo.profileImage);
+              }}
             />
           </motion.div>
         </div>
