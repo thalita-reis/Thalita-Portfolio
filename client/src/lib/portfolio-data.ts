@@ -52,16 +52,16 @@ export interface Language {
 export const portfolioData = {
   personalInfo: {
     name: "Thalita Pereira dos Reis",
-    title: "Product Owner & Scrum Master",
-    description: "Transformo caos em clareza. Product Owner e Scrum Master com conhecimento prático em desenvolvimento, especializada em traduzir visões abstratas em produtos digitais concretos que impactam resultados de negócio.",
+    title: "Product Owner & Desenvolvedora Front-end",
+    description: "Product Owner e Desenvolvedora Front-end com 20 anos de experiência em projetos de diferentes portes. Especializada em gestão de produto, metodologias ágeis e desenvolvimento Front-end com React.js, JavaScript, TypeScript e Node.js.",
     profileImage: "/attached_assets/Facetune_12-03-2024-19-12-10_1750195477728.jpeg"
   },
 
   about: {
-    title: "Especialista em Transformação Digital",
+    title: "Profissional em Transição para Desenvolvimento Front-end",
     description: [
-      "Com expertise em Product Management e metodologias ágeis, combino visão estratégica com conhecimento técnico em JavaScript, React, Node.js, TypeScript e Docker. Ao longo de minha trajetória em empresas como BTG Pactual e NotreDAme Intermédica, desenvolvi uma abordagem única que resulta em reduções de até 30% no time-to-market.",
-      "Minha fluência tanto em gestão de produto (Product Discovery, Roadmapping, OKRs/KPIs) quanto em tecnologias de desenvolvimento me permite construir pontes sólidas entre equipes técnicas e objetivos estratégicos. Implemento soluções com bancos de dados diversos e utilizo ferramentas de orquestração para otimizar processos."
+      "Sou Product Owner e Desenvolvedora Front-end com 20 anos de experiência em projetos de diferentes portes, atuando como Gerente de Projetos, Product Owner, Scrum Master e Agile Coach. Essa trajetória me levou a tomar a decisão de retomar um grande sonho: tornar-me uma desenvolvedora Front-end, com especialização em HTML, CSS, JavaScript, TypeScript, React.js, Node.js e jQuery.",
+      "Após anos dedicados a projetos que envolvem metodologias ágeis, gestão de produtos e transformação digital, percebo que posso usar minha experiência prática para criar produtos digitais inovadores e com forte impacto no mercado. Acredito que minha visão estratégica e capacidade técnica serão diferenciais valiosos, permitindo não só entregar código de qualidade, mas também construir pontes entre a tecnologia, o produto e o negócio."
     ],
     stats: {
       projects: "120+",
@@ -73,11 +73,11 @@ export const portfolioData = {
   experiences: [
     {
       id: "1",
-      title: "Product Owner",
+      title: "Desenvolvedora Front-end & Product Owner",
       company: "IMAGIN3D",
       period: "Jan 2025 - Presente",
-      description: "Lidero o desenvolvimento e evolução de soluções digitais voltadas para modelagem 3D interativa e realidade aumentada. Construí um produto B2B para visualização 3D interativa, impactando mais de 120 clientes ativos. Reduzi o churn em 30% e aumentei a adoção de novas funcionalidades em 40%.",
-      technologies: ["Product Management", "B2B", "3D Modeling", "AR"]
+      description: "Atuo na evolução de soluções digitais com foco em modelagem 3D interativa e realidade aumentada, aplicando experiência em produto e habilidades técnicas em desenvolvimento Front-end. Participei ativamente do desenvolvimento do sistema financeiro utilizando React.js, HTML, CSS, TypeScript e Node.js, permitindo controle de lucros e vendas para mais de 120 clientes ativos. Criei e otimizei componentes reutilizáveis com JavaScript e jQuery, reduzi o churn em 30% e aumentei em 40% a adoção de funcionalidades.",
+      technologies: ["React.js", "TypeScript", "JavaScript", "HTML/CSS", "Node.js", "jQuery"]
     },
     {
       id: "2",
@@ -175,20 +175,20 @@ export const portfolioData = {
     { name: "Product Management / Discovery", percentage: 95 },
     { name: "Scrum / Kanban / SAFe", percentage: 90 },
     { name: "JavaScript / TypeScript", percentage: 85 },
-    { name: "React / Node.js", percentage: 80 },
-    { name: "Data Analysis / BI", percentage: 85 },
-    { name: "Docker / Git / DevOps", percentage: 75 }
+    { name: "React.js / Node.js", percentage: 80 },
+    { name: "HTML / CSS / jQuery", percentage: 85 },
+    { name: "Git / GitHub / DevOps", percentage: 80 }
   ] as Skill[],
 
   tools: [
     { name: "Jira", icon: "fab fa-atlassian" },
     { name: "Figma", icon: "fab fa-figma" },
-    { name: "Docker", icon: "fab fa-docker" },
-    { name: "Git", icon: "fab fa-git-alt" },
+    { name: "Vercel", icon: "fas fa-server" },
+    { name: "GitHub", icon: "fab fa-github" },
     { name: "Trello", icon: "fab fa-trello" },
-    { name: "Confluence", icon: "fas fa-file-alt" },
-    { name: "Monday", icon: "fas fa-calendar" },
-    { name: "Airflow", icon: "fas fa-wind" }
+    { name: "Miro", icon: "fas fa-project-diagram" },
+    { name: "Power BI", icon: "fas fa-chart-bar" },
+    { name: "Render", icon: "fas fa-cloud" }
   ] as Tool[],
 
   softSkills: [
@@ -196,8 +196,8 @@ export const portfolioData = {
     { name: "Coaching em Inovação", icon: "fas fa-check-circle" },
     { name: "Comunicação Técnico-Negócio", icon: "fas fa-check-circle" },
     { name: "Liderança de Equipes Multidisciplinares", icon: "fas fa-check-circle" },
-    { name: "Análise de Business Intelligence", icon: "fas fa-check-circle" },
-    { name: "Técnicas de PNL", icon: "fas fa-check-circle" }
+    { name: "Resolução de Conflitos", icon: "fas fa-check-circle" },
+    { name: "Melhoria Contínua", icon: "fas fa-check-circle" }
   ] as SoftSkill[],
 
   contact: {

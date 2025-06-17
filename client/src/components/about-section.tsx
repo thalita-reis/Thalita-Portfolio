@@ -49,9 +49,12 @@ export default function AboutSection() {
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Objetivo Profissional</h4>
               <p className="text-gray-700 leading-relaxed">
-                Busco oportunidades como Product Owner, Product Manager ou Desenvolvedora Front-end em empresas inovadoras 
-                onde possa aplicar minha combinação única de visão estratégica e conhecimento técnico para orquestrar produtos 
-                digitais que transformam desafios de negócio em soluções de alto impacto.
+                Busco oportunidades como Product Owner, Product Manager ou Desenvolvedora Front-end em empresas inovadoras, 
+                onde possa aplicar minha combinação única de visão estratégica e habilidades técnicas. Com 20 anos de experiência 
+                em gestão de produtos digitais, liderança de equipes e implementação de soluções ágeis, estou pronta para orquestrar 
+                produtos que não só atendem às necessidades de negócios, mas também criam soluções inovadoras e de alto impacto. 
+                Minha transição para o desenvolvimento Front-end com HTML, CSS, JavaScript, TypeScript, React.js e Node.js me permite 
+                integrar estratégia de produto e desenvolvimento técnico de forma mais eficaz e colaborativa.
               </p>
             </div>
             
