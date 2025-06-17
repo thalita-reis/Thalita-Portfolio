@@ -1,5 +1,5 @@
 import { portfolioData } from "@/lib/portfolio-data";
-import { Linkedin, Github, Twitter } from "lucide-react";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const { contact, personalInfo } = portfolioData;
@@ -54,7 +54,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
-                  <Linkedin className="h-6 w-6" />
+                  <FaLinkedin className="h-6 w-6" />
                 </a>
               )}
               {contact.socialLinks.github && (
@@ -64,7 +64,17 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
-                  <Github className="h-6 w-6" />
+                  <FaGithub className="h-6 w-6" />
+                </a>
+              )}
+              {contact.socialLinks.instagram && (
+                <a
+                  href={contact.socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <FaInstagram className="h-6 w-6" />
                 </a>
               )}
             </div>

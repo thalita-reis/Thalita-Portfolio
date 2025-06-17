@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Mail, Phone, MapPin, Send, Linkedin, Github, Twitter, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
 import { portfolioData } from "@/lib/portfolio-data";
 import { useToast } from "@/hooks/use-toast";
 
@@ -56,10 +57,10 @@ export default function ContactSection() {
   };
 
   const socialIcons = {
-    linkedin: Linkedin,
-    github: Github,
-    twitter: Twitter,
-    instagram: Instagram
+    linkedin: FaLinkedin,
+    github: FaGithub,
+    twitter: FaTwitter,
+    instagram: FaInstagram
   };
 
   return (
@@ -126,10 +127,7 @@ export default function ContactSection() {
               <h4 className="text-lg font-semibold text-gray-900 mb-6">Redes Sociais</h4>
               <div className="flex space-x-4">
                 {Object.entries(contact.socialLinks)
-                  .filter(([platform, url]) => {
-                    console.log(`Social link: ${platform} = ${url}`);
-                    return url && url.trim() !== "";
-                  })
+                  .filter(([platform, url]) => url && url.trim() !== "")
                   .map(([platform, url]) => {
                     const Icon = socialIcons[platform as keyof typeof socialIcons];
                     const colors = {
@@ -139,12 +137,7 @@ export default function ContactSection() {
                       instagram: "bg-pink-600 hover:bg-pink-700"
                     };
                     
-                    console.log(`Rendering ${platform} with icon:`, Icon);
-                    
-                    if (!Icon) {
-                      console.warn(`No icon found for platform: ${platform}`);
-                      return null;
-                    }
+                    if (!Icon) return null;
                     
                     return (
                       <a
