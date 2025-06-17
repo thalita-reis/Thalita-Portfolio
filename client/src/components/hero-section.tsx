@@ -14,8 +14,12 @@ export default function HeroSection() {
   };
 
   const handleDownloadCV = () => {
-    // In a real implementation, this would download the actual CV
-    console.log("Download CV functionality would be implemented here");
+    const link = document.createElement('a');
+    link.href = '/Thalita_Pereira_dos_Reis_CV.pdf';
+    link.download = 'Thalita_Pereira_dos_Reis_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
