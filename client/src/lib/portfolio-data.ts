@@ -65,7 +65,7 @@ export const portfolioData = {
     ],
     stats: {
       projects: "120+",
-      experience: "4+"
+      experience: "20+"
     },
     workspaceImage: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
   },
@@ -206,9 +206,9 @@ export const portfolioData = {
     location: "São Paulo, SP - Brasil",
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/thalitapereiradosreis",
-      github: "https://github.com/thalitareis",
-      twitter: "https://twitter.com/thalitareis",
-      instagram: "https://instagram.com/thalitareis"
+      github: "https://github.com/thalita-reis",
+      twitter: "",
+      instagram: "https://www.instagram.com/eu.thata_reis/"
     }
   } as ContactInfo,
 

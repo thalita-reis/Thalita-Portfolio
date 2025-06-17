@@ -125,27 +125,29 @@ export default function ContactSection() {
             <div className="mt-12">
               <h4 className="text-lg font-semibold text-gray-900 mb-6">Redes Sociais</h4>
               <div className="flex space-x-4">
-                {Object.entries(contact.socialLinks).map(([platform, url]) => {
-                  const Icon = socialIcons[platform as keyof typeof socialIcons];
-                  const colors = {
-                    linkedin: "bg-blue-600 hover:bg-blue-700",
-                    github: "bg-gray-800 hover:bg-gray-900",
-                    twitter: "bg-blue-400 hover:bg-blue-500",
-                    instagram: "bg-pink-600 hover:bg-pink-700"
-                  };
-                  
-                  return (
-                    <a
-                      key={platform}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${colors[platform as keyof typeof colors]} text-white p-3 rounded-lg transition-colors duration-200`}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  );
-                })}
+                {Object.entries(contact.socialLinks)
+                  .filter(([platform, url]) => url && url.trim() !== "")
+                  .map(([platform, url]) => {
+                    const Icon = socialIcons[platform as keyof typeof socialIcons];
+                    const colors = {
+                      linkedin: "bg-blue-600 hover:bg-blue-700",
+                      github: "bg-gray-800 hover:bg-gray-900",
+                      twitter: "bg-blue-400 hover:bg-blue-500",
+                      instagram: "bg-pink-600 hover:bg-pink-700"
+                    };
+                    
+                    return (
+                      <a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${colors[platform as keyof typeof colors]} text-white p-3 rounded-lg transition-colors duration-200`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </a>
+                    );
+                  })}
               </div>
             </div>
           </motion.div>

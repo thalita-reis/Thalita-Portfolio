@@ -47,30 +47,26 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Conecte-se</h4>
             <div className="flex space-x-4">
-              <a
-                href={contact.socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <Linkedin className="h-6 w-6" />
-              </a>
-              <a
-                href={contact.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <Github className="h-6 w-6" />
-              </a>
-              <a
-                href={contact.socialLinks.twitter}
-                target="_blank"
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <Twitter className="h-6 w-6" />
-              </a>
+              {contact.socialLinks.linkedin && (
+                <a
+                  href={contact.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <Linkedin className="h-6 w-6" />
+                </a>
+              )}
+              {contact.socialLinks.github && (
+                <a
+                  href={contact.socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                >
+                  <Github className="h-6 w-6" />
+                </a>
+              )}
             </div>
           </div>
         </div>
