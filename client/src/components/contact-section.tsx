@@ -139,6 +139,13 @@ export default function ContactSection() {
                       instagram: "bg-pink-600 hover:bg-pink-700"
                     };
                     
+                    console.log(`Rendering ${platform} with icon:`, Icon);
+                    
+                    if (!Icon) {
+                      console.warn(`No icon found for platform: ${platform}`);
+                      return null;
+                    }
+                    
                     return (
                       <a
                         key={platform}
@@ -150,7 +157,8 @@ export default function ContactSection() {
                         <Icon className="h-5 w-5" />
                       </a>
                     );
-                  })}
+                  })
+                  .filter(Boolean)}
               </div>
             </div>
           </motion.div>
