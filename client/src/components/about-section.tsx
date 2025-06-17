@@ -46,6 +46,15 @@ export default function AboutSection() {
               </p>
             ))}
             
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h4 className="text-lg font-semibold text-gray-900 mb-3">Objetivo Profissional</h4>
+              <p className="text-gray-700 leading-relaxed">
+                Busco oportunidades como Product Owner, Product Manager ou Desenvolvedora Front-end em empresas inovadoras 
+                onde possa aplicar minha combinação única de visão estratégica e conhecimento técnico para orquestrar produtos 
+                digitais que transformam desafios de negócio em soluções de alto impacto.
+              </p>
+            </div>
+            
             <div className="grid grid-cols-2 gap-6">
               <Card className="text-center p-4 bg-gray-50">
                 <div className="text-2xl font-bold text-primary mb-1">{about.stats.projects}</div>

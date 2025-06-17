@@ -43,6 +43,12 @@ export interface ContactInfo {
   };
 }
 
+export interface Language {
+  name: string;
+  level: string;
+  percentage: number;
+}
+
 export const portfolioData = {
   personalInfo: {
     name: "Thalita Pereira dos Reis",
@@ -204,5 +210,11 @@ export const portfolioData = {
       twitter: "https://twitter.com/thalitareis",
       instagram: "https://instagram.com/thalitareis"
     }
-  } as ContactInfo
+  } as ContactInfo,
+
+  languages: [
+    { name: "Português", level: "Nativo", percentage: 100 },
+    { name: "Inglês", level: "Intermediário", percentage: 70 },
+    { name: "Espanhol", level: "Básico", percentage: 40 }
+  ] as Language[]
 };

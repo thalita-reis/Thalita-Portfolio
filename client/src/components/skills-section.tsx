@@ -6,7 +6,7 @@ import { portfolioData } from "@/lib/portfolio-data";
 import { useEffect, useState } from "react";
 
 export default function SkillsSection() {
-  const { technicalSkills, tools, softSkills } = portfolioData;
+  const { technicalSkills, tools, softSkills, languages } = portfolioData;
   const [animatedSkills, setAnimatedSkills] = useState<Record<string, number>>({});
 
   useEffect(() => {
@@ -94,11 +94,28 @@ export default function SkillsSection() {
             </div>
 
             {/* Soft Skills */}
-            <div className="space-y-3">
+            <div className="space-y-3 mb-8">
               {softSkills.map((skill) => (
                 <div key={skill.name} className="flex items-center">
                   <Check className="text-green-500 mr-3 h-5 w-5" />
                   <span className="text-gray-700">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Languages */}
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">Idiomas</h4>
+            <div className="space-y-4">
+              {languages.map((language) => (
+                <div key={language.name}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-gray-700 font-medium">{language.name}</span>
+                    <span className="text-primary font-semibold text-sm">{language.level}</span>
+                  </div>
+                  <Progress 
+                    value={language.percentage} 
+                    className="h-2"
+                  />
                 </div>
               ))}
             </div>
