@@ -54,7 +54,7 @@ export const portfolioData = {
     name: "Thalita Pereira dos Reis",
     title: "Product Owner & Scrum Master",
     description: "Transformo caos em clareza. Product Owner e Scrum Master com conhecimento prático em desenvolvimento, especializada em traduzir visões abstratas em produtos digitais concretos que impactam resultados de negócio.",
-    profileImage: "/profile-photo.png"
+    profileImage: "/attached_assets/image_1750195614349.png"
   },
 
   about: {
