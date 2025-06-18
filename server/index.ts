@@ -59,15 +59,21 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  // Configuration with environment variables support for better cross-platform compatibility
+  const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+  const HOST = process.env.HOST || "0.0.0.0";
+
+  // For Vercel serverless, we export the app instead of listening
+  if (process.env.VERCEL) {
+    // Export the Express app for Vercel
+    module.exports = app;
+  } else {
+    // For local development
+    server.listen(PORT, HOST, () => {
+      log(`serving on http://${HOST}:${PORT}`);
+    });
+  }
 })();
+
+// Export for Vercel serverless functions
+export default app;
