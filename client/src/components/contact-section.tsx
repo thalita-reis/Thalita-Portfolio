@@ -1,45 +1,48 @@
+// client/src/components/ui/contact-section.tsx
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { FaLinkedin, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
-import { portfolioData } from "@/lib/portfolio-data";
-import { useToast } from "@/hooks/use-toast";
 
-const contactFormSchema = z.object({
+// Schema de validação
+const contactSchema = z.object({
   name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres"),
   email: z.string().email("Email inválido"),
-  subject: z.string().min(5, "Assunto deve ter pelo menos 5 caracteres"),
-  message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres")
+  message: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
 });
 
-type ContactFormValues = z.infer<typeof contactFormSchema>;
+type ContactFormData = z.infer<typeof contactSchema>;
 
-export default function ContactSection() {
-  const { contact } = portfolioData;
+export function ContactSection() {
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const form = useForm<ContactFormValues>({
-    resolver: zodResolver(contactFormSchema),
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
-      message: ""
-    }
+      message: "",
+    },
   });
 
-  const onSubmit = async (data: ContactFormValues) => {
+  // 📧 NOVA FUNÇÃO - Usando sua API própria
+  const onSubmit = async (data: ContactFormData) => {
     try {
-      // Enviar email real para contato@thalitapreis.com.br usando Formspree
-      const response = await fetch('https://formspree.io/f/xpwanpyk', {
+      setIsLoading(true);
+      
+      console.log('Enviando dados:', data);
+
+      // Chamada para SUA API ao invés do Formspree
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,213 +50,246 @@ export default function ContactSection() {
         body: JSON.stringify({
           name: data.name,
           email: data.email,
-          subject: data.subject,
           message: data.message,
-          _replyto: data.email, // Para você poder responder diretamente
-          _subject: `Novo contato do portfólio: ${data.subject}`,
         }),
       });
 
-      if (response.ok) {
+      console.log('Response status:', response.status);
+      
+      const result = await response.json();
+      console.log('Response data:', result);
+
+      if (response.ok && result.success) {
         toast({
           title: "Mensagem enviada com sucesso! ✅",
-          description: "Obrigada pelo contato! Retornarei em breve via contato@thalitapreis.com.br",
+          description: `Obrigada pelo contato, ${data.name}! Respondo em breve no email contato@thalitapreis.com.br`,
+          duration: 6000,
         });
+        
         form.reset();
       } else {
-        throw new Error('Falha no envio');
+        throw new Error(result.error || 'Erro ao enviar mensagem');
       }
     } catch (error) {
-      console.error('Erro ao enviar email:', error);
+      console.error('Erro no envio:', error);
+      
       toast({
         title: "Erro ao enviar mensagem ❌",
-        description: "Tente novamente ou entre em contato diretamente: contato@thalitapreis.com.br",
-        variant: "destructive"
+        description: "Tente novamente em alguns minutos ou envie diretamente para contato@thalitapreis.com.br",
+        variant: "destructive",
+        duration: 8000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const socialIcons = {
-    linkedin: FaLinkedin,
-    github: FaGithub,
-    twitter: FaTwitter,
-    instagram: FaInstagram
-  };
-
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contato" className="py-20 bg-gradient-to-r from-blue-50 to-indigo-100">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Vamos Trabalhar Juntos?</h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded mb-6"></div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Vamos Trabalhar Juntos?
+          </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Estou sempre aberta a novas oportunidades e projetos desafiadores. Entre em contato!
+            Estou sempre aberta a novas oportunidades e projetos interessantes.
+            Entre em contato e vamos conversar!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Informações de Contato */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8">Informações de Contato</h3>
-            
-            <div className="space-y-6">
-              <div className="flex items-center">
-                <div className="bg-primary text-white p-3 rounded-lg mr-4">
-                  <Mail className="h-5 w-5" />
+            <div>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                Entre em Contato
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span className="text-blue-600">📧</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Email</p>
+                    <a 
+                      href="mailto:contato@thalitapreis.com.br"
+                      className="text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      contato@thalitapreis.com.br
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-medium text-gray-900">Email</div>
-                  <div className="text-gray-600">contato@thalitapreis.com.br</div>
-                </div>
-              </div>
 
-              <div className="flex items-center">
-                <div className="bg-primary text-white p-3 rounded-lg mr-4">
-                  <Phone className="h-5 w-5" />
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <span className="text-green-600">📱</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Telefone</p>
+                    <a 
+                      href="tel:11948080600"
+                      className="text-green-600 hover:text-green-700 transition-colors"
+                    >
+                      (11) 94808-0600
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-medium text-gray-900">Telefone</div>
-                  <div className="text-gray-600">{contact.phone}</div>
-                </div>
-              </div>
 
-              <div className="flex items-center">
-                <div className="bg-primary text-white p-3 rounded-lg mr-4">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-medium text-gray-900">Localização</div>
-                  <div className="text-gray-600">{contact.location}</div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <span className="text-purple-600">📍</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-900">Localização</p>
+                    <p className="text-gray-600">São Paulo, SP - Brasil</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="mt-12">
-              <h4 className="text-lg font-semibold text-gray-900 mb-6">Redes Sociais</h4>
+            <div>
+              <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                Redes Sociais
+              </h4>
               <div className="flex space-x-4">
-                {Object.entries(contact.socialLinks)
-                  .filter(([platform, url]) => url && url.trim() !== "")
-                  .map(([platform, url]) => {
-                    const Icon = socialIcons[platform as keyof typeof socialIcons];
-                    const colors = {
-                      linkedin: "bg-blue-600 hover:bg-blue-700",
-                      github: "bg-gray-800 hover:bg-gray-900",
-                      twitter: "bg-blue-400 hover:bg-blue-500",
-                      instagram: "bg-pink-600 hover:bg-pink-700"
-                    };
-                    
-                    if (!Icon) return null;
-                    
-                    return (
-                      <a
-                        key={platform}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${colors[platform as keyof typeof colors]} text-white p-3 rounded-lg transition-colors duration-200`}
-                      >
-                        <Icon className="h-5 w-5" />
-                      </a>
-                    );
-                  })
-                  .filter(Boolean)}
+                
+                  href="https://www.linkedin.com/in/thalitapereiradosreis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+                >
+                  <span className="text-xl">💼</span>
+                </a>
+                
+                  href="https://github.com/thalita-reis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center hover:bg-gray-900 transition-colors"
+                >
+                  <span className="text-xl">🐱</span>
+                </a>
+                
+                  href="https://www.instagram.com/eu.thata_reis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors"
+                >
+                  <span className="text-xl">📸</span>
+                </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Formulário de Contato */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8">Envie uma Mensagem</h3>
-            
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nome Completo</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Seu nome completo" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <Card className="shadow-lg">
+              <CardContent className="p-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div>
+                    <Label htmlFor="name" className="text-sm font-medium text-gray-900">
+                      Nome Completo *
+                    </Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Seu nome completo"
+                      {...form.register("name")}
+                      className="mt-1"
+                      disabled={isLoading}
+                    />
+                    {form.formState.errors.name && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {form.formState.errors.name.message}
+                      </p>
+                    )}
+                  </div>
 
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="seu.email@example.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <div>
+                    <Label htmlFor="email" className="text-sm font-medium text-gray-900">
+                      Email *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="seu.email@exemplo.com"
+                      {...form.register("email")}
+                      className="mt-1"
+                      disabled={isLoading}
+                    />
+                    {form.formState.errors.email && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {form.formState.errors.email.message}
+                      </p>
+                    )}
+                  </div>
 
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Assunto</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Assunto da mensagem" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <div>
+                    <Label htmlFor="message" className="text-sm font-medium text-gray-900">
+                      Mensagem *
+                    </Label>
+                    <Textarea
+                      id="message"
+                      placeholder="Conte-me sobre seu projeto ou como posso ajudar..."
+                      rows={6}
+                      {...form.register("message")}
+                      className="mt-1"
+                      disabled={isLoading}
+                    />
+                    {form.formState.errors.message && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {form.formState.errors.message.message}
+                      </p>
+                    )}
+                  </div>
 
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Mensagem</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Sua mensagem..."
-                          className="min-h-[120px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Enviando...</span>
+                      </div>
+                    ) : (
+                      <>
+                        <span className="mr-2">✈️</span>
+                        Enviar Mensagem
+                      </>
+                    )}
+                  </Button>
 
-                <Button 
-                  type="submit" 
-                  className="w-full"
-                  disabled={form.formState.isSubmitting}
-                >
-                  <Send className="mr-2 h-4 w-4" />
-                  {form.formState.isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-                </Button>
-              </form>
-            </Form>
+                  <p className="text-sm text-gray-500 text-center">
+                    Ou envie diretamente para:{" "}
+                    <a 
+                      href="mailto:contato@thalitapreis.com.br" 
+                      className="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      contato@thalitapreis.com.br
+                    </a>
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </div>
