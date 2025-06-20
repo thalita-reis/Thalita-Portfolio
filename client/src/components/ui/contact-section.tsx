@@ -115,27 +115,27 @@ export function ContactSection() {
                 Redes Sociais
               </h4>
               <div className="flex space-x-4">
-                
+                <a
                   href="https://www.linkedin.com/in/thalitapereiradosreis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700"
+                  className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
                 >
                   <span>💼</span>
                 </a>
-                
+                <a
                   href="https://github.com/thalita-reis"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center hover:bg-gray-900"
+                  className="w-12 h-12 bg-gray-800 text-white rounded-lg flex items-center justify-center hover:bg-gray-900 transition-colors"
                 >
                   <span>🐱</span>
                 </a>
-                
+                <a
                   href="https://www.instagram.com/eu.thata_reis/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700"
+                  className="w-12 h-12 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors"
                 >
                   <span>📸</span>
                 </a>
