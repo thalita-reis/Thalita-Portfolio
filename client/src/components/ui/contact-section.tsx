@@ -61,7 +61,6 @@ export function ContactSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Informações de Contato */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">
@@ -144,7 +143,6 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Formulário */}
           <Card className="shadow-lg">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
