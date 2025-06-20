@@ -54,7 +54,9 @@ export const portfolioData = {
     name: "Thalita Pereira dos Reis",
     title: "Product Owner & Desenvolvedora Front-end",
     description: "Product Owner e Desenvolvedora Front-end com 20 anos de experiência em projetos de diferentes portes. Especializada em gestão de produto, metodologias ágeis e desenvolvimento Front-end com React.js, JavaScript, TypeScript e Node.js.",
-    profileImage: "/attached_assets/Facetune_12-03-2024-19-12-10_1750195477728.jpeg"
+    profileImage: "/attached_assets/Facetune_12-03-2024-19-12-10_1750195477728.jpeg",
+    email: "contato@thalitapreis.com.br", // ← ADICIONADO
+    website: "https://thalitapreis.com.br" // ← ADICIONADO
   },
 
   about: {
@@ -67,7 +69,8 @@ export const portfolioData = {
       projects: "120+",
       experience: "20+"
     },
-    workspaceImage: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    workspaceImage: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    contactEmail: "contato@thalitapreis.com.br" // ← ADICIONADO
   },
 
   experiences: [
@@ -213,9 +216,10 @@ export const portfolioData = {
   ] as SoftSkill[],
 
   contact: {
-    email: "thalitapereirareis@gmail.com",
+    email: "contato@thalitapreis.com.br", // ← ALTERADO
     phone: "11-94808-0600",
     location: "São Paulo, SP - Brasil",
+    website: "https://thalitapreis.com.br", // ← ADICIONADO
     socialLinks: {
       linkedin: "https://www.linkedin.com/in/thalitapereiradosreis",
       github: "https://github.com/thalita-reis",
@@ -228,5 +232,23 @@ export const portfolioData = {
     { name: "Português", level: "Nativo", percentage: 100 },
     { name: "Inglês", level: "Intermediário (leitura técnica e comunicação básica)", percentage: 70 },
     { name: "Espanhol", level: "Básico (leitura técnica)", percentage: 40 }
-  ] as Language[]
+  ] as Language[],
+
+  // 📧 Configurações de contato para formulário
+  contactForm: {
+    destinatario: "contato@thalitapreis.com.br",
+    assuntoDefault: "Contato através do portfólio",
+    mensagemSucesso: "Mensagem enviada com sucesso! Respondo em breve no email contato@thalitapreis.com.br",
+    mensagemErro: "Erro ao enviar mensagem. Tente novamente ou envie diretamente para contato@thalitapreis.com.br"
+  },
+
+  // 🌐 Configurações do site
+  siteConfig: {
+    title: "Thalita Reis - Product Owner & Desenvolvedora Front-end",
+    description: "Portfolio profissional de Thalita Pereira dos Reis - Product Owner e Desenvolvedora Front-end especializada em React.js, TypeScript e metodologias ágeis.",
+    url: "https://thalitapreis.com.br",
+    author: "Thalita Pereira dos Reis",
+    keywords: ["Product Owner", "Desenvolvedora Front-end", "React.js", "TypeScript", "JavaScript", "Scrum", "Agile"],
+    email: "contato@thalitapreis.com.br"
+  }
 };

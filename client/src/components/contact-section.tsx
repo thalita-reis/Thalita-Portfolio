@@ -38,19 +38,36 @@ export default function ContactSection() {
 
   const onSubmit = async (data: ContactFormValues) => {
     try {
-      // In a real implementation, this would send the form data to a backend endpoint
-      console.log("Form data:", data);
-      
-      toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado pelo contato. Retornarei em breve!",
+      // Enviar email real para contato@thalitapreis.com.br usando Formspree
+      const response = await fetch('https://formspree.io/f/xpwanpyk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          _replyto: data.email, // Para você poder responder diretamente
+          _subject: `Novo contato do portfólio: ${data.subject}`,
+        }),
       });
-      
-      form.reset();
+
+      if (response.ok) {
+        toast({
+          title: "Mensagem enviada com sucesso! ✅",
+          description: "Obrigada pelo contato! Retornarei em breve via contato@thalitapreis.com.br",
+        });
+        form.reset();
+      } else {
+        throw new Error('Falha no envio');
+      }
     } catch (error) {
+      console.error('Erro ao enviar email:', error);
       toast({
-        title: "Erro ao enviar mensagem",
-        description: "Tente novamente ou entre em contato diretamente por email.",
+        title: "Erro ao enviar mensagem ❌",
+        description: "Tente novamente ou entre em contato diretamente: contato@thalitapreis.com.br",
         variant: "destructive"
       });
     }
@@ -97,7 +114,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-medium text-gray-900">Email</div>
-                  <div className="text-gray-600">{contact.email}</div>
+                  <div className="text-gray-600">contato@thalitapreis.com.br</div>
                 </div>
               </div>
 
