@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-export function ContactSection() {
+function ContactSection() {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -225,3 +225,5 @@ export function ContactSection() {
     </section>
   );
 }
+
+export default ContactSection;
