@@ -34,14 +34,14 @@ export function ContactSection() {
     },
   });
 
-  // 📧 NOVA FUNÇÃO - Usando sua API própria
+  // 📧 FUNÇÃO USANDO SUA API PRÓPRIA
   const onSubmit = async (data: ContactFormData) => {
     try {
       setIsLoading(true);
       
-      console.log('Enviando dados:', data);
+      console.log('🚀 Enviando dados para /api/contact:', data);
 
-      // Chamada para SUA API ao invés do Formspree
+      // Chamada para SUA API própria
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -54,10 +54,10 @@ export function ContactSection() {
         }),
       });
 
-      console.log('Response status:', response.status);
+      console.log('📡 Response status:', response.status);
       
       const result = await response.json();
-      console.log('Response data:', result);
+      console.log('📬 Response data:', result);
 
       if (response.ok && result.success) {
         toast({
@@ -71,7 +71,7 @@ export function ContactSection() {
         throw new Error(result.error || 'Erro ao enviar mensagem');
       }
     } catch (error) {
-      console.error('Erro no envio:', error);
+      console.error('💥 Erro no envio:', error);
       
       toast({
         title: "Erro ao enviar mensagem ❌",
